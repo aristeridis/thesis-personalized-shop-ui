@@ -8,6 +8,6 @@ import { ProductListComponent } from './components/product-list/product-list';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class AppComponent {
+export class App {
   protected readonly title = signal('personalized-eshop-frontend');
 }
