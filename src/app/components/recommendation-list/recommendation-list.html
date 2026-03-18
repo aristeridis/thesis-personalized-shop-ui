@@ -1,0 +1,17 @@
+<div class="recommendations-wrapper">
+  <h2 class="recommendation-title">✨ Προϊόντα τα οποία μπορεί να σας ενδιαφέρουν ✨</h2>
+  
+  <div class="recommendation-grid">
+    @for (product of recommendedProducts; track product.id) {
+      <div class="recommendation-card">
+        <img [src]="product.imageUrl" [alt]="product.title">
+        <div class="card-info">
+          <h4>{{ product.title }}</h4>
+          <p class="price">{{ product.price }} €</p>
+        </div>
+      </div>
+    } @empty {
+      <p>Ο αλγόριθμος συλλέγει δεδομένα για να σας κάνει προτάσεις...</p>
+    }
+  </div>
+</div>
