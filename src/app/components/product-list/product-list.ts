@@ -3,7 +3,7 @@ import { Product } from '../../models/product';
 import { ProductService } from '../../services/product';
 import { InteractionService } from '../../services/interaction';
 import { InteractionRequest } from '../../models/interaction-request';
-
+import { CartService } from '../../services/cart';
 @Component({
   selector: 'app-product-list',
   standalone: true,
@@ -13,14 +13,17 @@ import { InteractionRequest } from '../../models/interaction-request';
 })
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
+  filteredProducts: Product[] = [];
 
   private productService = inject(ProductService);
   private interactionService = inject(InteractionService);
+  private cartService = inject(CartService);
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe({
       next: (data) => {
         this.products = data;
+        this.filteredProducts = data;
         console.log('Τα προϊόντα φορτώθηκαν επιτυχώς:', this.products);
       },
       error: (error) => {
@@ -28,12 +31,26 @@ export class ProductListComponent implements OnInit {
       }
     });
   }
-  addToCart(productId: number | undefined) {
-    if (!productId) return;
+
+  onSearch(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const searchTerm = target.value.toLowerCase();
+    
+    this.filteredProducts = this.products.filter(product =>
+      product.title.toLowerCase().includes(searchTerm) ||
+      product.description.toLowerCase().includes(searchTerm)
+    );
+  }
+
+  addToCart(product: Product) {
+    if (!product.id) return;
+
+    this.cartService.addToCart(product);
+    alert(`Το ${product.title} προστέθηκε στο καλάθι!`);
 
     const request: InteractionRequest = {
       userId: 1,
-      productId: productId,
+      productId: product.id,
       interactionType: 'CART'
     };
 

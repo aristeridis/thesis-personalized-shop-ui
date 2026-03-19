@@ -1,0 +1,18 @@
+<div class="cart-container">
+  <h3>🛒 Το Καλάθι μου</h3>
+  
+  @if (cartService.getItems().length === 0) {
+    <p class="empty-msg">Δεν έχετε προϊόντα στο καλάθι.</p>
+  } @else {
+    <ul class="cart-items">
+      @for (item of cartService.getItems(); track item.id) {
+        <li>{{ item.title }} - <strong>{{ item.price }} €</strong></li>
+      }
+    </ul>
+    
+    <div class="cart-footer">
+      <p class="total">Σύνολο: {{ cartService.getTotalPrice() }} €</p>
+      <button class="checkout-btn" (click)="checkout()">Ολοκλήρωση Αγοράς</button>
+    </div>
+  }
+</div>

@@ -1,14 +1,23 @@
 <div class="product-container">
   <h2>Τα Προϊόντα μας</h2>
+
+  <div class="search-bar">
+    <input 
+      type="text" 
+      placeholder="🔍 Αναζήτηση με βάση το όνομα ή την περιγραφή..." 
+      (input)="onSearch($event)"
+    >
+  </div>
   
   <div class="product-grid">
-    @for (product of products; track product.id) {
+    @for (product of filteredProducts; track product.id) {
       <div class="product-card">
         <img [src]="product.imageUrl" [alt]="product.title" class="product-image">
         <h3 class="product-title">{{ product.title }}</h3>
         <p class="product-description">{{ product.description }}</p>
         <p class="product-price">{{ product.price }} €</p>
-<button class="add-to-cart-btn" (click)="addToCart(product.id)">Προσθήκη στο καλάθι</button>      </div>
+<button class="add-to-cart-btn" (click)="addToCart(product)">Προσθήκη στο καλάθι</button>
+ </div>
     } @empty {
       <p>Δεν βρέθηκαν προϊόντα</p>
     }
