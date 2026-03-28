@@ -1,0 +1,38 @@
+<div class="admin-panel">
+  <div class="admin-header">
+    <h3>⚙️ Πάνελ Διαχειριστή - Προσθήκη Προϊόντος</h3>
+  </div>
+
+  <form (ngSubmit)="onSubmit()" class="admin-form">
+    
+    <div class="form-group">
+      <label>Τίτλος Προϊόντος:</label>
+      <input type="text" name="title" [(ngModel)]="newProduct.title" required placeholder="π.χ. Προϊόν,μοντέλο κλπ">
+    </div>
+
+    <div class="form-group">
+      <label>Περιγραφή:</label>
+      <textarea name="description" [(ngModel)]="newProduct.description" rows="3" placeholder="Λεπτομέρειες προϊόντος..."></textarea>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group half">
+        <label>Τιμή (€):</label>
+        <input type="number" name="price" [(ngModel)]="newProduct.price" required min="0.1">
+      </div>
+
+      <div class="form-group half">
+        <label>Απόθεμα (Τεμάχια):</label>
+        <input type="number" name="stock" [(ngModel)]="newProduct.stockQuantity" required min="0">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Σύνδεσμος Εικόνας (URL):</label>
+      <input type="text" name="image" [(ngModel)]="newProduct.imageUrl" placeholder="https://...">
+    </div>
+
+    <button type="submit" class="submit-btn">Αποθήκευση Προϊόντος</button>
+
+  </form>
+</div>
