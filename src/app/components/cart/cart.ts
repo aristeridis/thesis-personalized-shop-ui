@@ -2,11 +2,13 @@ import { Component, inject } from '@angular/core';
 import { CartService } from '../../services/cart';
 import { InteractionService } from '../../services/interaction';
 import { InteractionRequest } from '../../models/interaction-request';
+import { RecommendationListComponent } from '../recommendation-list/recommendation-list';
+
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [],
+  imports: [RecommendationListComponent],
   templateUrl: './cart.html',
   styleUrl: './cart.css'
 })

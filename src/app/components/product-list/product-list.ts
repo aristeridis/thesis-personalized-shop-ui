@@ -4,10 +4,11 @@ import { ProductService } from '../../services/product';
 import { InteractionService } from '../../services/interaction';
 import { InteractionRequest } from '../../models/interaction-request';
 import { CartService } from '../../services/cart';
+import { RecommendationListComponent } from '../recommendation-list/recommendation-list';
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [],
+  imports: [RecommendationListComponent],
   templateUrl: './product-list.html',
   styleUrl: './product-list.css'
 })
