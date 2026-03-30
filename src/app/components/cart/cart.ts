@@ -33,7 +33,7 @@ export class CartComponent {
         this.interactionService.recordInteraction(request).subscribe();
       }
     });
-
+//TODO show num of prods
     this.cartService.clearCart();
     alert('Η αγορά ολοκληρώθηκε με επιτυχία! Ευχαριστούμε!');
   }

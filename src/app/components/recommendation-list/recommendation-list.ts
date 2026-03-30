@@ -12,7 +12,7 @@ import { RecommendationService } from '../../services/recommendation';
 export class RecommendationListComponent implements OnInit {
   recommendedProducts: Product[] = [];
   private recommendationService = inject(RecommendationService);
-
+//TODO diff users
   ngOnInit(): void {
     const userId = 1;
     this.recommendationService.getRecommendations(userId).subscribe({
