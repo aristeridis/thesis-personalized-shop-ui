@@ -1,0 +1,28 @@
+@startuml
+skinparam monochrome true
+skinparam participantPadding 20
+
+participant "Frontend\n(Angular)" as frontend
+participant "Backend\n(Spring Boot)" as backend
+database "Βάση Δεδομένων\n(PostgreSQL)" as db
+
+user -> frontend : 1. Πάτημα "Προσθήκη στο Καλάθι"
+activate frontend
+
+frontend -> frontend : 2. Ενημέρωση τοπικού CartService
+
+frontend -> backend : 3. HTTP POST /api/interactions\n(userId, productId, "CART")
+activate backend
+
+backend -> db : 4. Αποθήκευση νέας αλληλεπίδρασης
+activate db
+
+db --> backend : 5. Επιβεβαίωση αποθήκευσης
+deactivate db
+
+backend --> frontend : 6. HTTP 200 OK (Επιτυχία)
+deactivate backend
+
+frontend --> user : 7. Εμφάνιση μηνύματος επιτυχίας
+deactivate frontend
+@enduml
