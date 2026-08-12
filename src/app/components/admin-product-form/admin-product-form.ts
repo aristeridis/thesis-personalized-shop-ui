@@ -18,7 +18,8 @@ export class AdminProductFormComponent {
     description: '',
     price: 0,
     stockQuantity: 0,
-    imageUrl: ''
+    imageUrl: '',
+    categoryId:0
   };
 
   onSubmit() {
@@ -30,7 +31,7 @@ export class AdminProductFormComponent {
     this.productService.addProduct(this.newProduct).subscribe({
       next: (savedProduct) => {
         alert('Τέλεια! Το προϊόν καταχωρήθηκε στη Βάση!');
-        this.newProduct = { title: '', description: '', price: 0, stockQuantity: 0, imageUrl: '' };
+        this.newProduct = { title: '', description: '', price: 0, stockQuantity: 0, imageUrl: '', categoryId: 0};
       },
       error: (error) => {
         console.error('Σφάλμα αποθήκευσης:', error);
