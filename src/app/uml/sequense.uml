@@ -1,0 +1,40 @@
+@startuml
+skinparam shadowing false
+skinparam sequence {
+    ArrowColor black
+    LifeLineBorderColor black
+    LifeLineBackgroundColor white
+    ParticipantBorderColor black
+    ParticipantBackgroundColor white
+    ActorBorderColor black
+    ActorBackgroundColor white
+    DatabaseBorderColor black
+    DatabaseBackgroundColor white
+}
+
+actor "Χρήστης" as User
+participant "Frontend\n(Angular)" as Frontend
+participant "Backend\n(Spring Boot)" as Backend
+database "Βάση Δεδομένων\n(PostgreSQL)" as DB
+
+User -> Frontend : 1. Πάτημα "Προσθήκη στο Καλάθι"
+activate Frontend
+
+Frontend -> Frontend : 2. Ενημέρωση τοπικού CartService
+
+Frontend -> Backend : 3. HTTP POST /api/interactions\n(userId, productId, "CART")
+activate Backend
+
+Backend -> DB : 4. Αποθήκευση νέας αλληλεπίδρασης
+activate DB
+
+DB --> Backend : 5. Επιβεβαίωση αποθήκευσης
+deactivate DB
+
+Backend --> Frontend : 6. HTTP 200 OK (Επιτυχία)
+deactivate Backend
+
+Frontend --> User : 7. Εμφάνιση μηνύματος επιτυχίας
+deactivate Frontend
+
+@enduml
